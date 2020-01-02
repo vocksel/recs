@@ -237,6 +237,17 @@ function Core:createEntity()
     return HttpService:GenerateGUID(true)
 end
 
+
+function Core:getEntityForComponent(componentInstance)
+	local components = self._components[componentInstance.className]
+
+	for entityId, other in pairs(components) do
+		if componentInstance == other then
+			return entityId
+		end
+	end
+end
+
 --[[
 
     Given an entity ID, destroys the entity, removing all components from it.
