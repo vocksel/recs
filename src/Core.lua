@@ -248,6 +248,23 @@ function Core:getEntityForComponent(componentInstance)
 	end
 end
 
+function Core:getEntities(componentIdentifier)
+    componentIdentifier = resolveComponentByIdentifier(componentIdentifier)
+
+    local entities = {}
+    local componentInstances = self._components[componentIdentifier]
+
+    if componentInstances ~= nil then
+        for entity in pairs(componentInstances) do
+            table.insert(entities, entity)
+        end
+    else
+        error(errorMessages.componentNotRegistered:format(componentIdentifier), 2)
+    end
+
+    return entities
+end
+
 --[[
 
     Given an entity ID, destroys the entity, removing all components from it.
