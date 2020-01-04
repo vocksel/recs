@@ -238,6 +238,12 @@ function Core:createEntity()
 end
 
 
+--[[
+
+    Given a component instance, returns the entitiy that the instance is applied
+    to.
+
+]]
 function Core:getEntityForComponent(componentInstance)
 	local components = self._components[componentInstance.className]
 
@@ -248,6 +254,12 @@ function Core:getEntityForComponent(componentInstance)
 	end
 end
 
+--[[
+
+    Given a component identifier, returns an array of all the entities that have
+    that component.
+
+]]
 function Core:getEntities(componentIdentifier)
     componentIdentifier = resolveComponentByIdentifier(componentIdentifier)
 
